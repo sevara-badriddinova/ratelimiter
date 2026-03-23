@@ -24,6 +24,6 @@ public class RateLimiterService {
             bucket = new TokenBucket(5, 2, userId, redisTemplate);
             tokenBuckets.put(userId, bucket);
         }
-        return bucket.allowRequest();
+        return bucket.allowRequestAtomic();
     }
 }
