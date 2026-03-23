@@ -1,11 +1,15 @@
 package com.ratelimiter;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class RateLimiterService {
+    @Autowired
+    RedisTemplate<String, Long> redisTemplate;
     ConcurrentHashMap<String, TokenBucket> tokenBuckets;
 
     RateLimiterService() {
@@ -17,7 +21,7 @@ public class RateLimiterService {
             bucket = tokenBuckets.get(userId);
         }
         else{
-            bucket = new TokenBucket(5, 2);
+            bucket = new TokenBucket(5, 2, userId, redisTemplate);
             tokenBuckets.put(userId, bucket);
         }
         return bucket.allowRequest();
