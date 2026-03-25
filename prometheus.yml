@@ -5,4 +5,4 @@ scrape_configs:
   - job_name: 'ratelimiter'
     metrics_path: /actuator/prometheus
     static_configs:
-      - targets: ['192.168.4.62:8080']
+      - targets: ['10.226.125.27:8080']
