@@ -2,6 +2,8 @@
 
 A production-grade distributed rate limiter built with Java/Spring Boot 
 and Redis, implementing the token bucket algorithm with atomic operations.
+![Grafana Dashboard](dashboard.png)
+
 
 ## Architecture
 
